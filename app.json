@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "displayName": "Design Studio",
   "description": "Describe an app screen and get three or four distinct HTML and Tailwind directions side by side, each checked by a critic agent against concrete anti-AI-look rules. Pick one, refine it with comments, and export HTML, PNG or a React component.",
-  "author": "dawneflanagan",
+  "author": "redDawne",
   "license": "Apache-2.0",
   "minKiroCrewVersion": "0.1.0",
   "iconPath": "assets/icon.png",

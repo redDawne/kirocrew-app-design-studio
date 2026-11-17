@@ -16,3 +16,4 @@ app-crons.json
 
 # UI build dependencies (ui/dist/ IS committed: the App Store installs it as-is)
 ui/node_modules/
+.DS_Store
