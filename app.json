@@ -13,7 +13,13 @@
     "examples/habit/2-streak-as-headline.png",
     "examples/devtool/3-replay-bento.png"
   ],
-  "tags": ["designer-tools", "ux", "ui-design", "tailwind", "prototyping"],
+  "tags": [
+    "designer-tools",
+    "ux",
+    "ui-design",
+    "tailwind",
+    "prototyping"
+  ],
   "highlights": [
     "Three or four structurally different screen directions per prompt, shown side by side in sandboxed previews",
     "A critic agent checks every draft against concrete rules (type scale, one accent, 4/8px grid, real content, WCAG AA contrast) and fixes it before you see it as reviewed",
@@ -36,7 +42,9 @@
     "agents/design-studio-critic.json",
     "agents/design-studio-exporter.json"
   ],
-  "skills": ["skills/anti-ai-look-design"],
+  "skills": [
+    "skills/anti-ai-look-design"
+  ],
   "ui": {
     "entry": "dist/index.mjs",
     "pages": [
@@ -62,6 +70,28 @@
     ]
   },
   "platform": {
-    "os": ["macos", "linux"]
+    "os": [
+      "macos",
+      "linux"
+    ]
+  },
+  "mcpServers": {
+    "studio": {
+      "command": "python3",
+      "args": [
+        "mcp/server.py"
+      ],
+      "autoApprove": [
+        "get_rules",
+        "list_projects",
+        "get_project",
+        "load_variant",
+        "save_variant",
+        "check_variant",
+        "render_variant",
+        "save_export"
+      ],
+      "timeout": 120000
+    }
   }
 }

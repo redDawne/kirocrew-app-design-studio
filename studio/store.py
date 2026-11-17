@@ -38,6 +38,11 @@ def default_data_dir() -> Path:
     env = os.environ.get("DESIGN_STUDIO_DATA")
     if env:
         return Path(env)
+    # Installed copy (~/.kiro/crew/apps/design-studio/): data/ sits next to the code.
+    # The agents' MCP server gets no KIROCREW_HOME, so this is how it finds the data.
+    app_root = Path(__file__).resolve().parent.parent
+    if (app_root / "installed.json").is_file():
+        return app_root / "data"
     home = Path(os.environ.get("KIROCREW_HOME", str(Path.home() / ".kiro" / "crew")))
     return home / "apps" / os.environ.get("KIROCREW_APP_NAME", "design-studio") / "data"
 

@@ -5,8 +5,8 @@ Gives the designer, critic and exporter agents their tools: read the project
 and its design system, save and load variants, run the rule checks, render a
 variant to PNG, and save an export. Standard library only; no network.
 
-Data dir: $DESIGN_STUDIO_DATA (the agent file passes {APP_DATA}), else the
-app's default data dir under $KIROCREW_HOME.
+Data dir: $DESIGN_STUDIO_DATA, else the installed app's own data/ folder,
+else the app's default data dir under $KIROCREW_HOME.
 """
 from __future__ import annotations
 
@@ -29,7 +29,15 @@ _S = {"type": "string"}
 _PID = {"type": "string", "description": "Project id, e.g. 'billing-dashboard-3f9a1c'"}
 _VID = {"type": "string", "description": "Variant id, e.g. 'v-1a2b3c4d'"}
 
+RULES = Path(__file__).resolve().parent.parent / "skills" / "anti-ai-look-design" / "SKILL.md"
+
 TOOLS: list[dict[str, Any]] = [
+    {
+        "name": "get_rules",
+        "description": "Read the anti-AI-look design rules (R1-R12), the token table and the markup contract. "
+                       "Call this once before designing, reviewing or exporting.",
+        "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False},
+    },
     {
         "name": "list_projects",
         "description": "List Design Studio projects (id, name, counts), newest first.",
@@ -118,6 +126,10 @@ def _text(data: Any) -> list[dict[str, Any]]:
     return [{"type": "text", "text": data if isinstance(data, str) else json.dumps(data, indent=2)}]
 
 
+def t_get_rules(_a: dict[str, Any]) -> list[dict[str, Any]]:
+    return _text(RULES.read_text(encoding="utf-8"))
+
+
 def t_list_projects(_a: dict[str, Any]) -> list[dict[str, Any]]:
     return _text(STORE.list_projects())
 
@@ -165,6 +177,7 @@ def t_save_export(a: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 HANDLERS: dict[str, Callable[[dict[str, Any]], list[dict[str, Any]]]] = {
+    "get_rules": t_get_rules,
     "list_projects": t_list_projects,
     "get_project": t_get_project,
     "load_variant": t_load_variant,
