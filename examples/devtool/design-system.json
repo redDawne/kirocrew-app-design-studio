@@ -1,0 +1,34 @@
+{
+  "colors": {
+    "bg": "#F7F6F3",
+    "surface": "#FFFFFF",
+    "ink": "#1B1A17",
+    "muted": "#64615A",
+    "line": "#E4E1DA",
+    "accent": "#B4441C",
+    "accentInk": "#FFFFFF",
+    "danger": "#B42318",
+    "success": "#2F6B3A"
+  },
+  "fonts": {
+    "sans": "Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    "display": "'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif",
+    "mono": "'SF Mono', ui-monospace, Menlo, Consolas, monospace"
+  },
+  "radii": {
+    "sm": 4,
+    "md": 6,
+    "lg": 10
+  },
+  "spacingBase": 4,
+  "typeScale": [
+    12,
+    14,
+    16,
+    20,
+    24,
+    32,
+    44
+  ],
+  "appType": "marketing"
+}

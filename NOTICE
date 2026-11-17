@@ -1,0 +1,8 @@
+Design Studio (a Kiro Crew app)
+
+Licensed under the Apache License, Version 2.0; see LICENSE.
+
+This distribution bundles Tailwind CSS v3.4.17 (Play CDN build) at
+studio/vendor/tailwind-play.js, Copyright (c) Tailwind Labs, Inc.,
+licensed under the MIT License (https://github.com/tailwindlabs/tailwindcss/blob/v3.4.17/LICENSE).
+It is served only inside the sandboxed variant previews and renders.

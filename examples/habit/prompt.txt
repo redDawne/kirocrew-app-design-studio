@@ -1,0 +1,1 @@
+A mobile habit-tracker home screen (iPhone, 390x844): today's habits with check-off state, streaks, a small weekly view, and bottom navigation.

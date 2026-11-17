@@ -1,0 +1,67 @@
+{
+  "name": "design-studio",
+  "version": "0.1.0",
+  "displayName": "Design Studio",
+  "description": "Describe an app screen and get three or four distinct HTML and Tailwind directions side by side, each checked by a critic agent against concrete anti-AI-look rules. Pick one, refine it with comments, and export HTML, PNG or a React component.",
+  "author": "dawneflanagan",
+  "license": "Apache-2.0",
+  "minKiroCrewVersion": "0.1.0",
+  "iconPath": "assets/icon.png",
+  "heroImage": "assets/hero.png",
+  "screenshots": [
+    "examples/saas/1-dense-billing-ledger.png",
+    "examples/habit/2-streak-as-headline.png",
+    "examples/devtool/3-replay-bento.png"
+  ],
+  "tags": ["designer-tools", "ux", "ui-design", "tailwind", "prototyping"],
+  "highlights": [
+    "Three or four structurally different screen directions per prompt, shown side by side in sandboxed previews",
+    "A critic agent checks every draft against concrete rules (type scale, one accent, 4/8px grid, real content, WCAG AA contrast) and fixes it before you see it as reviewed",
+    "One editable design system per project (colours, fonts, radii, spacing, type scale) that every variant follows",
+    "Refine a chosen screen with plain-language comments; each refinement is a new round you can compare",
+    "Export as HTML, a PNG screenshot rendered locally, or a React + Tailwind (shadcn/ui) component"
+  ],
+  "useCases": [
+    "When you need a first screen for a new feature and do not know where to start visually, describe it and compare three directions the design-studio-designer agent drew",
+    "When a screen you built looks generated, ask for the same screen here and let the design-studio-critic agent apply the anti-ai-look-design rules to it",
+    "When you have picked a direction, leave a comment like 'make the table the hero' and get refined takes on that one screen",
+    "When the screen is right, ask the design-studio-exporter agent for a React + Tailwind component and copy it into your project"
+  ],
+  "configuration": [
+    "Needs Google Chrome or Chromium on this computer for screenshots and PNG export; previews in the page work without it",
+    "Everything stays on this computer: projects live in the app's data folder, and previews and renders load no web fonts, images or scripts"
+  ],
+  "agents": [
+    "agents/design-studio-designer.json",
+    "agents/design-studio-critic.json",
+    "agents/design-studio-exporter.json"
+  ],
+  "skills": ["skills/anti-ai-look-design"],
+  "ui": {
+    "entry": "dist/index.mjs",
+    "pages": [
+      {
+        "route": "/apps/design-studio",
+        "label": "Design Studio",
+        "icon": "Palette",
+        "iconUrl": "dist/icons/nav.svg"
+      }
+    ]
+  },
+  "backend": {
+    "entryPoint": "backend/server.py",
+    "port": "auto",
+    "healthCheck": "/health"
+  },
+  "permissions": {
+    "api": [
+      "/apps/design-studio/api",
+      "/apps/design-studio/api/*",
+      "/api/chat",
+      "/api/chat/slots"
+    ]
+  },
+  "platform": {
+    "os": ["macos", "linux"]
+  }
+}

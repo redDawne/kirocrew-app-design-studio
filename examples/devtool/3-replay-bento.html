@@ -1,0 +1,106 @@
+<header class="border-b border-line bg-surface">
+  <div class="max-w-7xl mx-auto px-8 h-16 flex items-center gap-12">
+    <a href="#" class="flex items-center gap-2 font-semibold">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>Tapedeck
+    </a>
+    <nav class="flex gap-8 text-sm text-muted">
+      <a href="#how" class="hover:text-ink">Product</a><a href="#proof" class="hover:text-ink">Customers</a><a href="#pricing" class="hover:text-ink">Pricing</a><a href="#" class="hover:text-ink">Docs</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-4 text-sm">
+      <a href="#" class="text-muted hover:text-ink">Sign in</a>
+      <a href="#" class="inline-flex items-center h-10 px-4 rounded-md border border-line text-ink font-medium">Start free</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-8">
+  <section class="py-24 grid grid-cols-12 gap-12 items-center">
+    <div class="col-span-5">
+      <h1 class="font-display text-3xl tracking-tight">Stop re-running CI and hoping. Replay the run that failed.</h1>
+      <p class="mt-6 text-lg text-muted">Tapedeck is a CLI and hosted tape store. It records each test run in CI and lets you replay a failed one locally, deterministically, with your own debugger.</p>
+      <div class="mt-8 flex items-center gap-4">
+        <a href="#" class="inline-flex items-center h-12 px-6 rounded-md bg-accent text-accent-ink font-semibold focus-visible:ring-2 ring-accent">Start recording free</a>
+        <code class="inline-flex items-center h-12 px-4 rounded-md border border-line bg-surface font-mono text-sm">brew install tapedeck</code>
+      </div>
+      <p class="mt-4 text-sm text-muted">Free for public repos. <a href="#" class="text-ink underline underline-offset-4">Setup guide, 6 min</a></p>
+    </div>
+    <div class="col-span-7 rounded-lg border border-line bg-surface shadow-sm">
+      <div class="flex items-center justify-between px-6 h-12 border-b border-line text-sm">
+        <span class="font-medium">northwind/checkout · run 8814 · integration 3/6</span>
+        <span class="flex items-center gap-2 text-muted"><span class="w-2 h-2 rounded-full bg-accent"></span>failed, then passed on retry</span>
+      </div>
+      <div class="p-6">
+        <p class="text-xs text-muted">Recorded events, 1,204 ms</p>
+        <div class="mt-4 space-y-2 font-mono text-xs">
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-muted">clock.now</span><div class="col-span-9"><div class="h-4 rounded-sm bg-ink/10" style="width:8%"></div></div></div>
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-muted">dns ledger.int</span><div class="col-span-9"><div class="h-4 rounded-sm bg-ink/10" style="margin-left:4%;width:14%"></div></div></div>
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-muted">POST /charge</span><div class="col-span-9"><div class="h-4 rounded-sm bg-ink/20" style="margin-left:12%;width:38%"></div></div></div>
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-ink">retry #1</span><div class="col-span-9"><div class="h-4 rounded-sm bg-accent" style="margin-left:52%;width:16%"></div></div></div>
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-muted">webhook ack</span><div class="col-span-9"><div class="h-4 rounded-sm bg-ink/20" style="margin-left:53%;width:22%"></div></div></div>
+          <div class="grid grid-cols-12 items-center gap-2"><span class="col-span-3 text-muted">assert status</span><div class="col-span-9"><div class="h-4 rounded-sm bg-ink/10" style="margin-left:84%;width:6%"></div></div></div>
+        </div>
+        <div class="mt-6 rounded-md bg-ink/5 p-4 font-mono text-xs">
+          <p class="text-accent">diverged at ledger/client.go:118</p>
+          <p class="mt-1 text-muted">retry #1 started 3 ms before webhook ack. In passing runs ack arrives first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="pb-24 grid grid-cols-12 gap-6">
+    <div class="col-span-7 row-span-2 rounded-lg border border-line bg-surface p-8">
+      <h2 class="font-display text-2xl tracking-tight">How it works</h2>
+      <ol class="mt-8 space-y-6">
+        <li class="grid grid-cols-12 gap-4"><span class="col-span-1 font-mono text-sm text-accent">1</span><div class="col-span-11"><p class="font-semibold">Wrap the test step</p><p class="mt-1 text-muted"><code class="font-mono text-sm">tapedeck record -- pytest -n 8</code> in any CI: GitHub Actions, Buildkite, CircleCI, Jenkins.</p></div></li>
+        <li class="grid grid-cols-12 gap-4"><span class="col-span-1 font-mono text-sm text-accent">2</span><div class="col-span-11"><p class="font-semibold">Failures upload, passes vanish</p><p class="mt-1 text-muted">Only red and retried runs are kept, encrypted with your key.</p></div></li>
+        <li class="grid grid-cols-12 gap-4"><span class="col-span-1 font-mono text-sm text-accent">3</span><div class="col-span-11"><p class="font-semibold">Replay with your debugger</p><p class="mt-1 text-muted">Clock, randomness, threads and network replay exactly. Attach Delve, pdb, lldb or VS Code and step through the failing run as many times as you want.</p></div></li>
+      </ol>
+    </div>
+    <div class="col-span-5 rounded-lg border border-line bg-surface p-8">
+      <p class="text-sm text-muted">Recording overhead, p50 across 312 teams</p>
+      <p class="mt-2 font-mono text-2xl tracking-tight">+4.6%</p>
+      <p class="mt-2 text-sm text-muted">Measured on wall-clock job time, October 2026.</p>
+    </div>
+    <div class="col-span-5 rounded-lg border border-line bg-surface p-8">
+      <p class="text-sm text-muted">Runners it records today</p>
+      <p class="mt-2 text-ink">Go test, pytest, Jest, Vitest, Playwright, RSpec, JUnit 5, Cargo test, Bazel</p>
+    </div>
+  </section>
+
+  <section id="proof" class="pb-24 grid grid-cols-12 gap-6">
+    <figure class="col-span-8 rounded-lg bg-ink text-bg p-8 flex flex-col justify-between">
+      <blockquote class="font-display text-2xl tracking-tight leading-snug">“Our quarantine list went from 63 tests to 5 in one quarter. Nobody on the team argues about flaky tests any more; they just pull the tape.”</blockquote>
+      <figcaption class="mt-8 text-sm text-bg/70">Ifeoma Chukwu, Staff Engineer, Northwind Freight</figcaption>
+    </figure>
+    <div class="col-span-4 rounded-lg border border-line bg-surface p-8">
+      <p class="text-sm text-muted">Recording in CI at</p>
+      <ul class="mt-4 space-y-2 font-medium">
+        <li>Kestrel Health</li><li>Lumen Maps</li><li>Brightwater Bank</li><li>Oyelaran Labs</li><li>Tidewater Games</li><li class="text-sm text-muted font-normal">and 306 more teams</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pricing" class="pb-24 grid grid-cols-12 gap-6">
+    <div class="col-span-4">
+      <h2 class="font-display text-2xl tracking-tight">Pricing</h2>
+      <p class="mt-4 text-muted">Unlimited people replay on every plan. You pay for stored tapes.</p>
+    </div>
+    <div class="col-span-4 rounded-lg border border-line bg-surface p-8">
+      <p class="font-semibold">Open source</p>
+      <p class="mt-2 font-mono text-2xl">$0</p>
+      <p class="mt-4 text-sm text-muted">Public repositories, 30-day retention, community support.</p>
+    </div>
+    <div class="col-span-4 rounded-lg border-2 border-accent bg-surface p-8">
+      <p class="font-semibold">Team</p>
+      <p class="mt-2 font-mono text-2xl">$240<span class="font-sans text-sm text-muted"> / month</span></p>
+      <p class="mt-4 text-sm text-muted">2,000 tapes a month, 90-day retention, Slack and Linear alerts. Self-hosted on request.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-line bg-surface">
+  <div class="max-w-7xl mx-auto px-8 py-12 grid grid-cols-12 gap-6 text-sm text-muted">
+    <p class="col-span-6"><span class="font-semibold text-ink">Tapedeck</span> · © 2026 Tapedeck Labs</p>
+    <p class="col-span-6 flex justify-end gap-6"><a href="#">Changelog</a><a href="#">Security</a><a href="#">Status</a><a href="#">hello@tapedeck.example</a></p>
+  </div>
+</footer>

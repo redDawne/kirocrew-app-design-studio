@@ -1,0 +1,1 @@
+A SaaS dashboard: the home screen of a subscription-billing product for finance teams at B2B software companies. Show MRR and its movement, failed payments needing action, upcoming renewals, and a customer table. Desktop.
