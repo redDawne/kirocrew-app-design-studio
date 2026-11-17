@@ -189,7 +189,8 @@ function Screens({ project, onGenerate, onPick }: {
       }}>
         <label htmlFor="ds-prompt">Describe the screen</label>
         <textarea id="ds-prompt" rows={3} value={prompt} onChange={(e) => setPrompt(e.target.value)}
-          placeholder="The home screen of an invoicing tool for freelance designers: unpaid invoices, this month's income, quick 'new invoice'." />
+          aria-describedby={prompt.trim() ? undefined : 'ds-prompt-hint'}
+          placeholder="e.g. The home screen of an invoicing tool for freelance designers: unpaid invoices, this month's income, quick 'new invoice'." />
         <div className="ds-row">
           <label className="ds-inline">Variants
             <select value={count} onChange={(e) => setCount(Number(e.target.value))}>
@@ -201,6 +202,7 @@ function Screens({ project, onGenerate, onPick }: {
             {sending ? 'Sending…' : 'Generate'}
           </button>
         </div>
+        {!prompt.trim() && !sending && <p id="ds-prompt-hint" className="ds-small ds-hint">Type a description to enable Generate.</p>}
       </form>
       {rounds.length === 0 && <p className="ds-muted">No screens yet. Variants appear here as the designer saves them.</p>}
       {rounds.map((r) => {

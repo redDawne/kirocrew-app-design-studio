@@ -14,6 +14,8 @@ export const CSS = `
 .ds-new label,.ds-prompt>label,.ds-side h4,.ds-system legend{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .ds-main{flex:1;min-width:0;overflow-y:auto;padding:16px 24px 48px}
 .ds-root input,.ds-root select,.ds-root textarea{background:var(--bg-elevated);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font:inherit;min-width:0}
+.ds-root input::placeholder,.ds-root textarea::placeholder{color:var(--muted);opacity:.7;font-style:italic}
+.ds-hint{text-align:right;margin:0}
 .ds-root textarea{width:100%;resize:vertical;box-sizing:border-box}
 .ds-root input:focus-visible,.ds-root select:focus-visible,.ds-root textarea:focus-visible,.ds-root button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .ds-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
