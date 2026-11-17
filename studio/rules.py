@@ -35,6 +35,9 @@ NEUTRALS = {"slate", "gray", "zinc", "neutral", "stone"}
 ARBITRARY_PX_RE = re.compile(r"\b(?:p|px|py|pt|pb|pl|pr|m|mx|my|mt|mb|ml|mr|gap|gap-x|gap-y|space-x|space-y)-\[(\d+)px\]")
 SPACING_STEP_RE = re.compile(r"(?<![\w-])-?(?:p|px|py|pt|pb|pl|pr|m|mx|my|mt|mb|ml|mr|gap|gap-x|gap-y|space-x|space-y)-(\d+(?:\.5)?)\b")
 ARBITRARY_TEXT_RE = re.compile(r"\btext-\[(\d+)px\]")
+# A scale-up on a text element fakes a size the type scale does not have.
+SCALED_TEXT_RE = re.compile(r'class="[^"]*\btext-[a-z0-9]+\b[^"]*\bscale-(?:1[1-9]\d|[2-9]\d\d)\b[^"]*"'
+                            r'|class="[^"]*\bscale-(?:1[1-9]\d|[2-9]\d\d)\b[^"]*\btext-[a-z0-9]+\b[^"]*"')
 TEXT_SIZE_RE = re.compile(r"\btext-(xs|sm|base|lg|xl|[2-9]xl)\b")
 CENTER_RE = re.compile(r"\btext-center\b")
 HEX_IN_MARKUP_RE = re.compile(r"#[0-9a-fA-F]{6}\b")
@@ -89,6 +92,8 @@ def check(html: str, system: dict[str, Any]) -> dict[str, Any]:
                            ", ".join([f"{n}px" for n in off_grid] + [f"-{s}" for s in halves])))
 
     scale = system["typeScale"]
+    if SCALED_TEXT_RE.search(html):
+        findings.append(_f("R1-type-scale", "error", "Text enlarged with scale-*: use a type-scale size instead"))
     arb_text = sorted({int(n) for n in ARBITRARY_TEXT_RE.findall(html)} - set(scale))
     if arb_text:
         findings.append(_f("R1-type-scale", "error", "Font sizes outside the type scale",

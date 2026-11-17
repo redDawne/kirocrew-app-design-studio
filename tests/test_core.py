@@ -89,7 +89,9 @@ class RulesTests(unittest.TestCase):
 
     def test_catches_ai_tells(self) -> None:
         html = ('<div class="bg-gradient-to-r from-purple-500 to-blue-500 backdrop-blur-md p-[13px] text-[15px]">'
-                '<p>Lorem ipsum</p><span>\U0001F680</span><p class="text-indigo-600">John Doe</p></div>')
+                '<p>Lorem ipsum</p><span>\U0001F680</span><p class="text-indigo-600">John Doe</p>'
+                '<p class="text-4xl scale-150">41</p></div>')
+        self.assertIn("scale-", str(rules.check(html, self.system)["findings"]))
         found = self.ids(html)
         for rule in ("R5-real-content", "R7-no-emoji-icons", "R6-no-default-gradients", "R8-no-default-glass",
                      "R2-one-accent", "R3-spacing-grid", "R1-type-scale"):
