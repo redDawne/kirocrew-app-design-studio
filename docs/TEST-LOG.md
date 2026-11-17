@@ -28,3 +28,9 @@ Newest last. Each entry: step, result, evidence.
 - BUG 2 (critic catch): the designer faked a bigger number with `scale-150`; the checker missed it. FIX: R1 now flags `scale-*` on text; test added.
 - Outputs: `examples/live-habit/`.
 - NOT TESTED: the page's own buttons (Generate, Pick, Refine, Export) end to end; needs the dashboard login, which agents cannot get.
+
+## 2026-11-17 12:30 - steps 4-6
+- Step 4: fixes committed (7cbf737, ac5ff45); 13 tests pass. `kirocrew app update` refused from an agent shell; the user must run it.
+- Step 5: TODO. Real page screenshots and the GIF/MP4 need a logged-in dashboard (agents are refused a token) and `capture/capture.py` needs a KiroCrew source checkout.
+- Step 6: readiness rules R1-R5 checked (see the report): all pass, nothing blocking.
+- NEXT after Update: send one Generate from the page; confirm gateway.log shows the agents registered and the designer's tool calls land in data/projects/.
