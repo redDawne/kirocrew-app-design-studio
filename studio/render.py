@@ -44,6 +44,12 @@ _CHROME_CANDIDATES = (
     "chromium",
     "chromium-browser",
     "msedge",
+    # Windows installs (per-machine, 32-bit folder, per-user), then Edge.
+    os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+    os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+    os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
+    os.path.expandvars(r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"),
+    os.path.expandvars(r"%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"),
 )
 
 _BODY_RE = re.compile(r"<body[^>]*>(.*)</body>", re.S | re.I)
